@@ -1,77 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_router_5/route.dart';
 
 void main() {
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  // private navigators
-  final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  final _shellNavigatorKey = GlobalKey<NavigatorState>();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final tabs = [
-      const ScaffoldWithNavBarTabItem(
-        initialLocation: '/a',
-        icon: Icon(Icons.home),
-        label: 'Section A',
-      ),
-      const ScaffoldWithNavBarTabItem(
-        initialLocation: '/b',
-        icon: Icon(Icons.settings),
-        label: 'Section B',
-      ),
-    ];
-
-    final goRouter = GoRouter(
-      initialLocation: '/a',
-      navigatorKey: _rootNavigatorKey,
-      debugLogDiagnostics: true,
-      routes: [
-        ShellRoute(
-          navigatorKey: _shellNavigatorKey,
-          builder: (context, state, child) {
-            return ScaffoldWithBottomNavBar(tabs: tabs, child: child);
-          },
-          routes: [
-            // Products
-            GoRoute(
-              path: '/a',
-              pageBuilder: (context, state) => NoTransitionPage(
-                key: state.pageKey,
-                child: const RootScreen(label: 'A', detailsPath: '/a/details'),
-              ),
-              routes: [
-                GoRoute(
-                  path: 'details',
-                  builder: (context, state) => const DetailsScreen(label: 'A'),
-                ),
-              ],
-            ),
-            // Shopping Cart
-            GoRoute(
-              path: '/b',
-              pageBuilder: (context, state) => NoTransitionPage(
-                key: state.pageKey,
-                child: const RootScreen(label: 'B', detailsPath: '/b/details'),
-              ),
-              routes: [
-                GoRoute(
-                  path: 'details',
-                  builder: (context, state) => const DetailsScreen(label: 'B'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-
     return MaterialApp.router(
       routerConfig: goRouter,
       debugShowCheckedModeBanner: false,
