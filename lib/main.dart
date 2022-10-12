@@ -170,6 +170,13 @@ class ScaffoldWithoutBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('No Bottom Nav Page'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/a'),
+        ),
+      ),
       body: child,
     );
   }

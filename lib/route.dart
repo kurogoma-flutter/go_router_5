@@ -81,8 +81,15 @@ final goRouter = GoRouter(
     ),
     GoRoute(
       path: '/testPage',
-      builder: (context, state) => const ScaffoldWithoutBottomNavBar(
-          child: Center(child: Text('Test Page'))),
+      builder: (context, state) => ScaffoldWithoutBottomNavBar(
+        child: Center(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: const Center(child: Text('Test Page')),
+          ),
+        ),
+      ),
     ),
   ],
 );
