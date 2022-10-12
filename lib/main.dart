@@ -149,9 +149,28 @@ class DetailsScreenState extends State<DetailsScreen> {
               },
               child: const Text('Increment counter'),
             ),
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: () => context.go('/testPage'),
+              child: const Text('Go to No Bottom Nav Page'),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// ボトムナビゲーションのないScaffold
+class ScaffoldWithoutBottomNavBar extends StatelessWidget {
+  const ScaffoldWithoutBottomNavBar({Key? key, required this.child})
+      : super(key: key);
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: child,
     );
   }
 }
